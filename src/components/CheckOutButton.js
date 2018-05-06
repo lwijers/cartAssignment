@@ -8,7 +8,7 @@ class CheckOutButton extends PureComponent {
     onClick: PropTypes.func.isRequired
   }
 
-    render() {
+  render() {
     return (
       <button onClick={this.props.onClick}>Check Out</button>
     )

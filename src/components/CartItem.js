@@ -23,15 +23,15 @@ export default class CartItem extends PureComponent {
      onPlusClick(id, { amount: amount + 1 })
    }
 
-  render() {
-    const {name, price, amount} = this.props
+   render() {
+     const {name, price, amount} = this.props
 
 
-  return (
-    <li className="CartItem">
-      <p className ="cartItemInfo">item: {name}, Price: {price}, current amount: {amount}
-      <button className="Increment" onClick={this.incrementQuantity}>+</button></p>
-    </li>
-    )
-  }
+     return (
+       <li className="CartItem">
+         <p className ="cartItemInfo">item: {name}, Price: {price}, current amount: {amount}
+           <button className="Increment" onClick={this.incrementQuantity}>+</button></p>
+       </li>
+     )
+   }
 }
