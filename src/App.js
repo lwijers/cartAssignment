@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import './App.css';
 import CartItem from './components/CartItem'
 import CheckOutButton from './components/CheckOutButton'
+import Clock from 'react-live-clock';
+// import Time from './components/Clock.js'
 // import PropTypes from 'prop-types'
 
 const products = [
@@ -47,11 +49,13 @@ class App extends Component {
   render() {
       return (
       <div className="App">
-          <CheckOutButton content=" test" />
-          <ul>
-            {this.state.products.map((product, index) => <CartItem key={index} onPlusClick={this.updateProduct} { ...product} />) }
+        <Clock format={'HH:mm:ss'} ticking = {true} timezone={'Europe/Amsterdam'} />
+        <CheckOutButton content=" test" />
+        <ul>
+          {this.state.products.map((product, index) => <CartItem key={index} onPlusClick={this.updateProduct} { ...product} />) }
+        </ul>
 
-          </ul>
+
       </div>
     );
   }
