@@ -3,8 +3,6 @@ import './App.css';
 import CartItem from './components/CartItem'
 import CheckOutButton from './components/CheckOutButton'
 import Clock from 'react-live-clock';
-// import Time from './components/Clock.js'
-// import PropTypes from 'prop-types'
 
 const products = [
     {
@@ -27,38 +25,53 @@ const products = [
     }
 ]
 
+let totalAmount = 0
+
 class App extends Component {
-  state = { products }
-  // static propTypes = {
-  //   cartItems: PropTypes.arrayOf(cartItemShape).isRequired
-  // }
+  state = { products, totalAmount }
 
   updateProduct = (productId, updates) => {
-   this.setState({
-     products: this.state.products.map((product) => {
-       if (product.id !== productId) return product
-       return { ...product, ...updates }
-     })
-   })
- }
-
-
-
-
-
-  render() {
-      return (
-      <div className="App">
-        <Clock format={'HH:mm:ss'} ticking = {true} timezone={'Europe/Amsterdam'} />
-        <CheckOutButton content=" test" />
-        <ul>
-          {this.state.products.map((product, index) => <CartItem key={index} onPlusClick={this.updateProduct} { ...product} />) }
-        </ul>
-
-
-      </div>
-    );
+    this.setState({
+      products: this.state.products.map((product) => {
+        if (product.id !== productId) return product
+        return { ...product, ...updates }
+      })
+    })
   }
+
+ updateTotalAmount = () => {
+   let totalPerProduct = this.state.products.map((product) =>{
+     return product.amount * product.price
+   })
+   console.log(totalPerProduct);
+   this.setState({
+     totalAmount: totalPerProduct.reduce((prev, next) => {
+       return prev + next}, 0)
+     })
+   }
+
+render() {
+  return (
+    <div className="App">
+      <Clock
+        format={'HH:mm:ss'}
+        ticking = {true}
+        timezone={'Europe/Amsterdam'}
+      />
+      <ul>
+        {this.state.products.map((product, index) =>
+          <CartItem
+            key={index}
+            onPlusClick={this.updateProduct}
+            { ...product}
+          />)
+        }
+      </ul>
+      <CheckOutButton onClick={this.updateTotalAmount}/>
+      <p>{this.state.totalAmount}</p>
+    </div>
+  );
+}
 }
 
 export default App;

@@ -2,7 +2,7 @@
 
 import React, { PureComponent } from 'react'
 import PropTypes from 'prop-types'
-// import IncrementButton from "./IncrementButton"
+
 export const cartItemShape = PropTypes.shape({
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
@@ -17,8 +17,6 @@ export default class CartItem extends PureComponent {
     ...cartItemShape.isRequired,
     onPlusClick: PropTypes.func.isRequired
   }
-
-
 
    incrementQuantity = () => {
      const { id, amount, onPlusClick} = this.props
@@ -37,4 +35,3 @@ export default class CartItem extends PureComponent {
     )
   }
 }
- //       <IncrementButton onClick={this.incrementQuantity(id)} />
